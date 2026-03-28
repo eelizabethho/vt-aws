@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Smart Scheduler
 
-## Getting Started
+## How we used Kiro
+We used **Kiro** to help speed up development and connect different parts of our system.
 
-First, run the development server:
+- Integrated **AWS DynamoDB** for storing user schedules  
+- Helped build and structure **API routes using Express.js**  
+- Assisted with connecting our **Flask API** to retrieve VT class data  
+- Helped debug and improve overall data flow between frontend and backend  
 
+---
+
+## How to run the project
+
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+git clone <your-repo-link>
+cd <your-project-folder>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
+Frontend
+cd client
+npm install
+Backend (Express)
+cd server
+npm install
+Backend (Flask)
+cd flask
+pip install -r requirements.txt
+3. Set up environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a .env file:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+REACT_APP_GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_ID=your_google_client_id
+AWS_ACCESS_KEY_ID=your_key
+AWS_SECRET_ACCESS_KEY=your_secret
+4. Run the app
+Start Express backend
+cd server
+node index.js
+Start Flask API
+cd flask
+python app.py
+Start frontend
+cd client
+npm start
+5. Open in browser
+http://localhost:3000
