@@ -454,7 +454,6 @@ const WeeklyCalendar = ({ schedule }) => {
                   style={{ top, height, backgroundColor: color + '22', borderLeft: `3px solid ${color}` }}>
                   <p className="text-xs font-bold leading-tight truncate" style={{ color }}>{cls.courseKey}</p>
                   {height > 30 && <p className="text-xs truncate leading-tight" style={{ color: color + 'cc' }}>{formatTime(cls.startTime)}</p>}
-                  {height > 48 && <p className="text-xs text-gray-500 truncate leading-tight">{cls.location}</p>}
                   {/* Tooltip */}
                   <div className="absolute left-full top-0 ml-2 z-50 hidden group-hover:block w-48 bg-white border border-gray-200 rounded-xl p-3 shadow-xl pointer-events-none">
                     <p className="font-bold text-xs" style={{ color }}>{cls.courseKey}</p>
@@ -553,6 +552,23 @@ export default function App() {
 
   const toggleCourse = (key) => { setError(''); setSelectedCourses(prev => prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]); };
 
+  // Detect pairs of courses where ALL section combos conflict
+  const conflictWarnings = useMemo(() => {
+    const warnings = [];
+    for (let i = 0; i < selectedCourses.length; i++) {
+      for (let j = i + 1; j < selectedCourses.length; j++) {
+        const a = CLASS_DATABASE[selectedCourses[i]];
+        const b = CLASS_DATABASE[selectedCourses[j]];
+        if (!a || !b) continue;
+        const allConflict = a.sections.every(sa =>
+          b.sections.every(sb => classesOverlap(sa, sb))
+        );
+        if (allConflict) warnings.push([selectedCourses[i], selectedCourses[j]]);
+      }
+    }
+    return warnings;
+  }, [selectedCourses]);
+
   const handleOptimize = () => {
     setError('');
     if (selectedCourses.length === 0) { setError('Select at least one course to optimize.'); return; }
@@ -647,6 +663,16 @@ export default function App() {
                 </div>
               )}
               <div className="p-6 pt-4 border-t border-gray-100">
+                {conflictWarnings.length > 0 && (
+                  <div className="mb-3 space-y-2">
+                    {conflictWarnings.map(([a, b]) => (
+                      <div key={a+b} className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-700 flex items-start gap-2 text-sm">
+                        <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5 text-amber-500" />
+                        <span><span className="font-semibold">{a}</span> and <span className="font-semibold">{b}</span> always conflict — no valid combination exists between them.</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <button onClick={handleOptimize} disabled={optimizing || selectedCourses.length === 0}
                   className="w-full bg-gradient-to-r from-[#861F41] to-[#6B1835] hover:from-[#E87722] hover:to-[#861F41] text-white font-semibold py-3.5 rounded-xl transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg">
                   {optimizing ? (<><div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />Finding Best Schedule...</>) : (<><Zap className="w-5 h-5" />Optimize Schedule ({selectedCourses.length} course{selectedCourses.length !== 1 ? 's' : ''})</>)}
@@ -818,12 +844,7 @@ export default function App() {
         </div>
       </main>
 
-      <footer className="border-t border-gray-200 mt-16 bg-white">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400">
-          <p>SmartScheduler · CS 3704 Group Project · Virginia Tech</p>
-          <p className="mt-2 sm:mt-0">Built with React, Tailwind CSS & Leaflet</p>
-        </div>
-      </footer>
+      
     </div>
   );
 }
