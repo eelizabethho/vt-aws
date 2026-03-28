@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import GoogleLogin from './my-dynamodb/GoogleLogin';
+import { useAuth } from './my-dynamodb/useAuth';
+import { useScheduleStorage } from './my-dynamodb/useScheduleStorage';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {
@@ -516,8 +519,11 @@ const StatCard = ({ icon: Icon, label, value, unit }) => (
 // App
 // ─────────────────────────────────────────────
 export default function App() {
+  const { user, login, logout } = useAuth();
+  const { saveSchedule, loadSchedule, saving } = useScheduleStorage(user);
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [schedule, setSchedule] = useState([]);
+  const [savedToast, setSavedToast] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [showCatalog, setShowCatalog] = useState(true);
   const [error, setError] = useState('');
@@ -528,6 +534,36 @@ export default function App() {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const markersRef = useRef([]);
+
+  // ── Persist schedule to localStorage keyed by user ──
+  // ── Always persist schedule to localStorage (never overwrite with empty) ──
+  useEffect(() => {
+    if (schedule.length === 0) return;
+    const key = user ? `vt_schedule_${user.userId}` : 'vt_schedule_guest';
+    localStorage.setItem(key, JSON.stringify(schedule));
+  }, [schedule, user]);
+
+  // ── Load correct schedule when user changes ──
+  useEffect(() => {
+    if (!user) {
+      // Load guest schedule on refresh
+      try {
+        const local = localStorage.getItem('vt_schedule_guest');
+        setSchedule(local ? JSON.parse(local) : []);
+      } catch { setSchedule([]); }
+      return;
+    }
+    // Logged in — load this user's schedule only
+    setSchedule([]); // clear any previous user's data first
+    try {
+      const local = localStorage.getItem(`vt_schedule_${user.userId}`);
+      if (local) setSchedule(JSON.parse(local));
+    } catch {}
+    // Also try DynamoDB
+    loadSchedule().then(saved => {
+      if (saved && saved.length > 0) setSchedule(saved);
+    });
+  }, [user, loadSchedule]);
 
   // ── Map init ──
   useEffect(() => {
@@ -632,9 +668,19 @@ export default function App() {
               <p className="text-xs text-gray-400 -mt-0.5">Virginia Tech Schedule Optimizer</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-xs text-gray-400">
-            <Sparkles className="w-3.5 h-3.5 text-[#E87722]" />
-            <span>Ut Prosim — That I May Serve</span>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 text-xs text-gray-400">
+              <Sparkles className="w-3.5 h-3.5 text-[#E87722]" />
+              <span>Ut Prosim — That I May Serve</span>
+            </div>
+            {user ? (
+              <div className="flex items-center gap-2 text-xs">
+                <span className="text-gray-300">{user.name}</span>
+                <button onClick={() => { setSchedule([]); setSelectedCourses([]); logout(); }} className="text-gray-500 hover:text-white underline">Sign out</button>
+              </div>
+            ) : (
+              <GoogleLogin onSuccess={login} onError={() => alert('Google sign-in failed')} />
+            )}
           </div>
         </div>
       </header>
@@ -706,6 +752,18 @@ export default function App() {
                   className="w-full bg-gradient-to-r from-[#861F41] to-[#6B1835] hover:from-[#E87722] hover:to-[#861F41] text-white font-semibold py-3.5 rounded-xl transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg">
                   {optimizing ? (<><div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />Finding Best Schedule...</>) : (<><Zap className="w-5 h-5" />Optimize Schedule ({selectedCourses.length} course{selectedCourses.length !== 1 ? 's' : ''})</>)}
                 </button>
+                {schedule.length > 0 && (
+                  <div className="mt-2">
+                    {user ? (
+                      <button onClick={() => saveSchedule(schedule).then(() => { setSavedToast(true); setTimeout(() => setSavedToast(false), 3000); })} disabled={saving}
+                        className="w-full bg-gradient-to-r from-[#861F41] to-[#6B1835] hover:from-[#a02550] hover:to-[#861F41] text-white font-semibold py-3.5 rounded-xl transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg">
+                        {saving ? 'Saving...' : savedToast ? '✓ Saved!' : 'Save Schedule'}
+                      </button>
+                    ) : (
+                      <p className="text-xs text-center text-gray-400">Sign in to save your schedule to your account</p>
+                    )}
+                  </div>
+                )}
                 {error && <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 flex items-start gap-2 text-sm"><AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" /><span>{error}</span></div>}
               </div>
             </div>
