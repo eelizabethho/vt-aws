@@ -294,6 +294,233 @@ const CLASS_DATABASE = {
       { crn: '27101', location: 'Patton Hall',      startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Koelling' },
     ],
   },
+
+  // ── CS upper-level ──
+  'CS 3604': { title: 'Professionalism in Computing', credits: 3, sections: [
+    { crn: '40100', location: 'McBryde Hall',    startTime: '09:05', endTime: '09:55',  days: 'MWF', instructor: 'Dr. Pérez-Quiñones' },
+    { crn: '40101', location: 'Torgersen Hall',  startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Pérez-Quiñones' },
+  ]},
+  'CS 3654': { title: 'Intro to Data Analytics', credits: 3, sections: [
+    { crn: '40200', location: 'Torgersen Hall',  startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Lu' },
+    { crn: '40201', location: 'McBryde Hall',    startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. Lu' },
+  ]},
+  'CS 4104': { title: 'Data & Algorithm Analysis', credits: 3, sections: [
+    { crn: '40300', location: 'McBryde Hall',    startTime: '11:15', endTime: '12:05',  days: 'MWF', instructor: 'Dr. Heath' },
+    { crn: '40301', location: 'Torgersen Hall',  startTime: '12:30', endTime: '13:45',  days: 'TR',  instructor: 'Dr. Heath' },
+  ]},
+  'CS 4284': { title: 'Systems & Networking Capstone', credits: 3, sections: [
+    { crn: '40400', location: 'Torgersen Hall',  startTime: '15:30', endTime: '16:45',  days: 'TR',  instructor: 'Dr. Ramakrishnan' },
+  ]},
+  'CS 4414': { title: 'Systems Programming', credits: 3, sections: [
+    { crn: '40500', location: 'McBryde Hall',    startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Dr. Evans' },
+    { crn: '40501', location: 'Torgersen Hall',  startTime: '11:15', endTime: '12:30',  days: 'TR',  instructor: 'Dr. Evans' },
+  ]},
+  'CS 4504': { title: 'Computer Graphics', credits: 3, sections: [
+    { crn: '40600', location: 'Torgersen Hall',  startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Ribbens' },
+  ]},
+  'CS 4624': { title: 'Multimedia, Hypertext & Info Access', credits: 3, sections: [
+    { crn: '40700', location: 'Torgersen Hall',  startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Fox' },
+  ]},
+  'CS 4704': { title: 'Software Engineering', credits: 3, sections: [
+    { crn: '40800', location: 'McBryde Hall',    startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. Barnette' },
+    { crn: '40801', location: 'Torgersen Hall',  startTime: '15:30', endTime: '16:45',  days: 'TR',  instructor: 'Dr. Barnette' },
+  ]},
+  'CS 4804': { title: 'Intro to Artificial Intelligence', credits: 3, sections: [
+    { crn: '40900', location: 'McBryde Hall',    startTime: '11:15', endTime: '12:30',  days: 'TR',  instructor: 'Dr. Ramakrishnan' },
+    { crn: '40901', location: 'Torgersen Hall',  startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Lu' },
+  ]},
+  'CS 4824': { title: 'Machine Learning', credits: 3, sections: [
+    { crn: '41000', location: 'Torgersen Hall',  startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. Lu' },
+  ]},
+
+  // ── ECE ──
+  'ECE 2004': { title: 'Electric Circuit Analysis', credits: 3, sections: [
+    { crn: '41100', location: 'Whittemore Hall', startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Dr. Jones' },
+    { crn: '41101', location: 'Goodwin Hall',    startTime: '12:30', endTime: '13:45',  days: 'TR',  instructor: 'Dr. Jones' },
+    { crn: '41102', location: 'Whittemore Hall', startTime: '15:30', endTime: '16:20',  days: 'MWF', instructor: 'Dr. Ha' },
+  ]},
+  'ECE 3054': { title: 'Embedded Systems', credits: 3, sections: [
+    { crn: '41200', location: 'Goodwin Hall',    startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Abbott' },
+    { crn: '41201', location: 'Whittemore Hall', startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Abbott' },
+  ]},
+  'ECE 3104': { title: 'Electronic Devices', credits: 3, sections: [
+    { crn: '41300', location: 'Whittemore Hall', startTime: '09:05', endTime: '09:55',  days: 'MWF', instructor: 'Dr. Martin' },
+    { crn: '41301', location: 'Goodwin Hall',    startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. Martin' },
+  ]},
+  'ECE 3434': { title: 'Intro to Digital Signal Processing', credits: 3, sections: [
+    { crn: '41400', location: 'Whittemore Hall', startTime: '11:15', endTime: '12:05',  days: 'MWF', instructor: 'Dr. Ha' },
+  ]},
+  'ECE 4534': { title: 'Embedded System Design', credits: 3, sections: [
+    { crn: '41500', location: 'Goodwin Hall',    startTime: '15:30', endTime: '16:45',  days: 'TR',  instructor: 'Dr. Abbott' },
+  ]},
+
+  // ── MATH ──
+  'MATH 2534': { title: 'Intro to Discrete Mathematics', credits: 3, sections: [
+    { crn: '42100', location: 'McBryde Hall',    startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Dr. Floyd' },
+    { crn: '42101', location: 'Norris Hall',     startTime: '11:15', endTime: '12:30',  days: 'TR',  instructor: 'Dr. Brown' },
+    { crn: '42102', location: 'McBryde Hall',    startTime: '14:00', endTime: '14:50',  days: 'MWF', instructor: 'Dr. Floyd' },
+  ]},
+  'MATH 3144': { title: 'Functions of a Complex Variable', credits: 3, sections: [
+    { crn: '42200', location: 'McBryde Hall',    startTime: '09:05', endTime: '09:55',  days: 'MWF', instructor: 'Dr. Kim' },
+    { crn: '42201', location: 'Norris Hall',     startTime: '15:30', endTime: '16:45',  days: 'TR',  instructor: 'Dr. Kim' },
+  ]},
+  'MATH 4124': { title: 'Abstract Algebra', credits: 3, sections: [
+    { crn: '42300', location: 'McBryde Hall',    startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Haskell' },
+  ]},
+  'MATH 4225': { title: 'Intro to Real Analysis', credits: 3, sections: [
+    { crn: '42400', location: 'Norris Hall',     startTime: '12:30', endTime: '13:45',  days: 'TR',  instructor: 'Dr. Brown' },
+    { crn: '42401', location: 'McBryde Hall',    startTime: '11:15', endTime: '12:05',  days: 'MWF', instructor: 'Dr. Haskell' },
+  ]},
+  'MATH 4446': { title: 'Numerical Analysis', credits: 3, sections: [
+    { crn: '42500', location: 'McBryde Hall',    startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Ribbens' },
+  ]},
+
+  // ── PHYS ──
+  'PHYS 3154': { title: 'Experimental Physics', credits: 3, sections: [
+    { crn: '43100', location: 'Robeson Hall',    startTime: '09:05', endTime: '09:55',  days: 'MWF', instructor: 'Dr. Tauber' },
+    { crn: '43101', location: 'Robeson Hall',    startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Pitt' },
+  ]},
+  'PHYS 3314': { title: 'Modern Physics', credits: 3, sections: [
+    { crn: '43200', location: 'Robeson Hall',    startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Pitt' },
+    { crn: '43201', location: 'Derring Hall',    startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. Tauber' },
+  ]},
+  'PHYS 4255': { title: 'Quantum Mechanics', credits: 3, sections: [
+    { crn: '43300', location: 'Robeson Hall',    startTime: '11:15', endTime: '12:30',  days: 'TR',  instructor: 'Dr. Tauber' },
+  ]},
+
+  // ── CHEM ──
+  'CHEM 1036': { title: 'General Chemistry Lab', credits: 1, sections: [
+    { crn: '44100', location: 'Hahn Hall',       startTime: '14:00', endTime: '16:50',  days: 'M',   instructor: 'Dr. Long' },
+    { crn: '44101', location: 'Hahn Hall',       startTime: '14:00', endTime: '16:50',  days: 'W',   instructor: 'Dr. Morris' },
+    { crn: '44102', location: 'Hahn Hall',       startTime: '14:00', endTime: '16:50',  days: 'F',   instructor: 'Dr. Long' },
+  ]},
+  'CHEM 2114': { title: 'Organic Chemistry I', credits: 3, sections: [
+    { crn: '44200', location: 'Hahn Hall',       startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Dr. Morris' },
+    { crn: '44201', location: 'Norris Hall',     startTime: '12:30', endTime: '13:45',  days: 'TR',  instructor: 'Dr. Morris' },
+  ]},
+  'CHEM 2124': { title: 'Organic Chemistry II', credits: 3, sections: [
+    { crn: '44300', location: 'Hahn Hall',       startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Long' },
+    { crn: '44301', location: 'Hahn Hall',       startTime: '15:30', endTime: '16:45',  days: 'TR',  instructor: 'Dr. Long' },
+  ]},
+  'CHEM 3615': { title: 'Analytical Chemistry', credits: 3, sections: [
+    { crn: '44400', location: 'Hahn Hall',       startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. Morris' },
+  ]},
+
+  // ── BIOL ──
+  'BIOL 1106': { title: 'Principles of Biology Lab', credits: 1, sections: [
+    { crn: '45100', location: 'Derring Hall',    startTime: '14:00', endTime: '16:50',  days: 'T',   instructor: 'Dr. Finkler' },
+    { crn: '45101', location: 'Derring Hall',    startTime: '14:00', endTime: '16:50',  days: 'R',   instructor: 'Dr. Finkler' },
+  ]},
+  'BIOL 2104': { title: 'Genetics', credits: 3, sections: [
+    { crn: '45200', location: 'Derring Hall',    startTime: '09:05', endTime: '09:55',  days: 'MWF', instructor: 'Dr. Finkler' },
+    { crn: '45201', location: 'Robeson Hall',    startTime: '11:15', endTime: '12:30',  days: 'TR',  instructor: 'Dr. Finkler' },
+  ]},
+  'BIOL 3004': { title: 'Cell Biology', credits: 3, sections: [
+    { crn: '45300', location: 'Derring Hall',    startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Finkler' },
+    { crn: '45301', location: 'Derring Hall',    startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Finkler' },
+  ]},
+
+  // ── ENGL / COMM ──
+  'ENGL 2744': { title: 'Intro to Creative Writing', credits: 3, sections: [
+    { crn: '46100', location: 'Shanks Hall',     startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Prof. Lee' },
+    { crn: '46101', location: 'Shanks Hall',     startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Prof. Carter' },
+  ]},
+  'ENGL 3764': { title: 'Technical Writing', credits: 3, sections: [
+    { crn: '46200', location: 'Shanks Hall',     startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Prof. Carter' },
+    { crn: '46201', location: 'War Memorial Hall', startTime: '09:30', endTime: '10:45', days: 'TR', instructor: 'Prof. Lee' },
+  ]},
+  'COMM 2004': { title: 'Public Speaking', credits: 3, sections: [
+    { crn: '46300', location: 'Shanks Hall',     startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Prof. Davis' },
+    { crn: '46301', location: 'War Memorial Hall', startTime: '11:15', endTime: '12:30', days: 'TR', instructor: 'Prof. Davis' },
+    { crn: '46302', location: 'Shanks Hall',     startTime: '15:30', endTime: '16:20',  days: 'MWF', instructor: 'Prof. Allen' },
+  ]},
+
+  // ── ECON / MGT / ACCT ──
+  'ECON 2006': { title: 'Principles of Macroeconomics', credits: 3, sections: [
+    { crn: '47100', location: 'Pamplin Hall',    startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Dr. Ashley' },
+    { crn: '47101', location: 'Randolph Hall',   startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. Tideman' },
+  ]},
+  'ECON 3104': { title: 'Intermediate Microeconomics', credits: 3, sections: [
+    { crn: '47200', location: 'Pamplin Hall',    startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Tideman' },
+    { crn: '47201', location: 'Pamplin Hall',    startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Ashley' },
+  ]},
+  'ACCT 2005': { title: 'Principles of Accounting', credits: 3, sections: [
+    { crn: '47300', location: 'Pamplin Hall',    startTime: '09:05', endTime: '09:55',  days: 'MWF', instructor: 'Dr. Pence' },
+    { crn: '47301', location: 'Pamplin Hall',    startTime: '12:30', endTime: '13:45',  days: 'TR',  instructor: 'Dr. Pence' },
+  ]},
+  'MGT 4394': { title: 'Strategic Management', credits: 3, sections: [
+    { crn: '47400', location: 'Pamplin Hall',    startTime: '11:15', endTime: '12:30',  days: 'TR',  instructor: 'Dr. Carlson' },
+    { crn: '47401', location: 'Pamplin Hall',    startTime: '15:30', endTime: '16:45',  days: 'TR',  instructor: 'Dr. Carlson' },
+  ]},
+  'MKTG 3104': { title: 'Principles of Marketing', credits: 3, sections: [
+    { crn: '47500', location: 'Pamplin Hall',    startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Ragsdale' },
+    { crn: '47501', location: 'Randolph Hall',   startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. Ragsdale' },
+  ]},
+
+  // ── ISE ──
+  'ISE 3014': { title: 'Operations Research', credits: 3, sections: [
+    { crn: '48100', location: 'Patton Hall',     startTime: '09:05', endTime: '09:55',  days: 'MWF', instructor: 'Dr. Koelling' },
+    { crn: '48101', location: 'Patton Hall',     startTime: '12:30', endTime: '13:45',  days: 'TR',  instructor: 'Dr. Koelling' },
+  ]},
+  'ISE 3424': { title: 'Human Factors Engineering', credits: 3, sections: [
+    { crn: '48200', location: 'Patton Hall',     startTime: '11:15', endTime: '12:05',  days: 'MWF', instructor: 'Dr. Kleiner' },
+    { crn: '48201', location: 'Patton Hall',     startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Kleiner' },
+  ]},
+  'ISE 4404': { title: 'Supply Chain Management', credits: 3, sections: [
+    { crn: '48300', location: 'Patton Hall',     startTime: '15:30', endTime: '16:45',  days: 'TR',  instructor: 'Dr. Koelling' },
+  ]},
+
+  // ── AOE / ME / CEE ──
+  'AOE 2074': { title: 'Computational Methods', credits: 3, sections: [
+    { crn: '49100', location: 'Randolph Hall',   startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Dr. Cliff' },
+    { crn: '49101', location: 'Norris Hall',     startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. Cliff' },
+  ]},
+  'AOE 3054': { title: 'Fluid Mechanics', credits: 3, sections: [
+    { crn: '49200', location: 'Randolph Hall',   startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Cliff' },
+    { crn: '49201', location: 'Patton Hall',     startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Cliff' },
+  ]},
+  'ME 2004': { title: 'Engineering Dynamics', credits: 3, sections: [
+    { crn: '49300', location: 'Randolph Hall',   startTime: '09:05', endTime: '09:55',  days: 'MWF', instructor: 'Dr. West' },
+    { crn: '49301', location: 'Patton Hall',     startTime: '11:15', endTime: '12:30',  days: 'TR',  instructor: 'Dr. West' },
+    { crn: '49302', location: 'Randolph Hall',   startTime: '14:00', endTime: '14:50',  days: 'MWF', instructor: 'Dr. West' },
+  ]},
+  'ME 3134': { title: 'Thermodynamics', credits: 3, sections: [
+    { crn: '49400', location: 'Randolph Hall',   startTime: '11:15', endTime: '12:05',  days: 'MWF', instructor: 'Dr. West' },
+    { crn: '49401', location: 'Patton Hall',     startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. West' },
+  ]},
+  'CEE 2004': { title: 'Statics', credits: 3, sections: [
+    { crn: '49500', location: 'Patton Hall',     startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Dr. Cousins' },
+    { crn: '49501', location: 'Randolph Hall',   startTime: '12:30', endTime: '13:45',  days: 'TR',  instructor: 'Dr. Cousins' },
+  ]},
+  'CEE 3404': { title: 'Structural Analysis', credits: 3, sections: [
+    { crn: '49600', location: 'Patton Hall',     startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Cousins' },
+    { crn: '49601', location: 'Patton Hall',     startTime: '15:30', endTime: '16:45',  days: 'TR',  instructor: 'Dr. Cousins' },
+  ]},
+
+  // ── PSYC / SOC / HIST / POLS ──
+  'PSYC 2004': { title: 'Research Methods in Psychology', credits: 3, sections: [
+    { crn: '50100', location: 'War Memorial Hall', startTime: '10:10', endTime: '11:00', days: 'MWF', instructor: 'Dr. Cooper' },
+    { crn: '50101', location: 'Randolph Hall',   startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Allen' },
+  ]},
+  'PSYC 3104': { title: 'Abnormal Psychology', credits: 3, sections: [
+    { crn: '50200', location: 'War Memorial Hall', startTime: '09:30', endTime: '10:45', days: 'TR', instructor: 'Dr. Cooper' },
+    { crn: '50201', location: 'Randolph Hall',   startTime: '11:15', endTime: '12:05',  days: 'MWF', instructor: 'Dr. Allen' },
+  ]},
+  'SOC 3004': { title: 'Social Inequality', credits: 3, sections: [
+    { crn: '50300', location: 'Randolph Hall',   startTime: '09:05', endTime: '09:55',  days: 'MWF', instructor: 'Dr. Hughes' },
+    { crn: '50301', location: 'War Memorial Hall', startTime: '12:30', endTime: '13:45', days: 'TR', instructor: 'Dr. Hughes' },
+  ]},
+  'HIST 1016': { title: 'World History since 1500', credits: 3, sections: [
+    { crn: '50400', location: 'Shanks Hall',     startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Prof. Davis' },
+    { crn: '50401', location: 'War Memorial Hall', startTime: '09:30', endTime: '10:45', days: 'TR', instructor: 'Prof. Davis' },
+  ]},
+  'POLS 1014': { title: 'Intro to Political Science', credits: 3, sections: [
+    { crn: '50500', location: 'Randolph Hall',   startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Roberts' },
+    { crn: '50501', location: 'War Memorial Hall', startTime: '14:00', endTime: '15:15', days: 'TR', instructor: 'Dr. Roberts' },
+  ]},
+  'POLS 3204': { title: 'American Government', credits: 3, sections: [
+    { crn: '50600', location: 'Randolph Hall',   startTime: '11:15', endTime: '12:30',  days: 'TR',  instructor: 'Dr. Roberts' },
+  ]},
 };
 
 // ─────────────────────────────────────────────
@@ -653,6 +880,9 @@ export default function App() {
     const q = searchQuery.toLowerCase();
     return key.toLowerCase().includes(q) || course.title.toLowerCase().includes(q);
   });
+
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-900 font-sans">
