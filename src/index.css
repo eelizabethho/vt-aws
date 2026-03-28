@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1e1b2e;
+}
+::-webkit-scrollbar-thumb {
+  background: #861F41;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E87722;
+}
+
+/* Leaflet popup overrides */
+.leaflet-popup-content-wrapper {
+  background: #1e1b2e !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+  border: 1px solid #861F41 !important;
+  box-shadow: 0 8px 32px rgba(134, 31, 65, 0.3) !important;
+}
+.leaflet-popup-tip {
+  background: #1e1b2e !important;
+  border: 1px solid #861F41 !important;
+}
+.leaflet-popup-close-button {
+  color: #E87722 !important;
+}
+
+/* Glowing border animation */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 5px rgba(232, 119, 34, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(232, 119, 34, 0.6); }
+}
+.glow-border {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Staggered children */
+.stagger-children > * {
+  animation: fadeInUp 0.4s ease-out forwards;
+  opacity: 0;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
