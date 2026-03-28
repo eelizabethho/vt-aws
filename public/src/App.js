@@ -126,6 +126,163 @@ const CLASS_DATABASE = {
       { crn: '26101', location: 'Pamplin Hall',     startTime: '15:30', endTime: '16:45',  days: 'TR',  instructor: 'Dr. Pence' },
     ],
   },
+  'CS 3114': {
+    title: 'Data Structures & Algorithms',
+    credits: 3,
+    sections: [
+      { crn: '28100', location: 'McBryde Hall',     startTime: '09:05', endTime: '09:55',  days: 'MWF', instructor: 'Dr. Shaffer' },
+      { crn: '28101', location: 'Torgersen Hall',   startTime: '12:30', endTime: '13:45',  days: 'TR',  instructor: 'Dr. Ribbens' },
+      { crn: '28102', location: 'McBryde Hall',     startTime: '15:30', endTime: '16:45',  days: 'TR',  instructor: 'Dr. Shaffer' },
+    ],
+  },
+  'CS 3304': {
+    title: 'Comparative Languages',
+    credits: 3,
+    sections: [
+      { crn: '28200', location: 'Torgersen Hall',   startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Ramakrishnan' },
+      { crn: '28201', location: 'McBryde Hall',     startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Ramakrishnan' },
+    ],
+  },
+  'CS 3744': {
+    title: 'Intro to GUI & Web Dev',
+    credits: 3,
+    sections: [
+      { crn: '28300', location: 'Torgersen Hall',   startTime: '11:15', endTime: '12:05',  days: 'MWF', instructor: 'Dr. Pérez-Quiñones' },
+      { crn: '28301', location: 'Surge Space Building', startTime: '09:30', endTime: '10:45', days: 'TR', instructor: 'Dr. Pérez-Quiñones' },
+    ],
+  },
+  'CS 4234': {
+    title: 'Analysis of Algorithms',
+    credits: 3,
+    sections: [
+      { crn: '28400', location: 'McBryde Hall',     startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Dr. Heath' },
+      { crn: '28401', location: 'Torgersen Hall',   startTime: '15:30', endTime: '16:45',  days: 'TR',  instructor: 'Dr. Heath' },
+    ],
+  },
+  'CS 4664': {
+    title: 'Capstone: Machine Learning',
+    credits: 3,
+    sections: [
+      { crn: '28500', location: 'Torgersen Hall',   startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Lu' },
+    ],
+  },
+  'MATH 2224': {
+    title: 'Multivariable Calculus',
+    credits: 3,
+    sections: [
+      { crn: '29100', location: 'McBryde Hall',     startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Dr. Haskell' },
+      { crn: '29101', location: 'Norris Hall',      startTime: '11:15', endTime: '12:05',  days: 'MWF', instructor: 'Dr. Kim' },
+      { crn: '29102', location: 'McBryde Hall',     startTime: '12:30', endTime: '13:45',  days: 'TR',  instructor: 'Dr. Floyd' },
+    ],
+  },
+  'MATH 3134': {
+    title: 'Applied Combinatorics',
+    credits: 3,
+    sections: [
+      { crn: '29200', location: 'McBryde Hall',     startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Brown' },
+      { crn: '29201', location: 'Norris Hall',      startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Brown' },
+    ],
+  },
+  'STAT 3615': {
+    title: 'Biological Statistics',
+    credits: 3,
+    sections: [
+      { crn: '30100', location: 'Holden Hall',      startTime: '09:05', endTime: '09:55',  days: 'MWF', instructor: 'Dr. Vining' },
+      { crn: '30101', location: 'Holden Hall',      startTime: '12:30', endTime: '13:45',  days: 'TR',  instructor: 'Dr. Vining' },
+    ],
+  },
+  'STAT 4105': {
+    title: 'Probability & Statistics',
+    credits: 3,
+    sections: [
+      { crn: '30200', location: 'Holden Hall',      startTime: '11:15', endTime: '12:05',  days: 'MWF', instructor: 'Dr. Smith' },
+      { crn: '30201', location: 'McBryde Hall',     startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. Smith' },
+    ],
+  },
+  'ECE 3574': {
+    title: 'Applied Software Design',
+    credits: 3,
+    sections: [
+      { crn: '31100', location: 'Whittemore Hall',  startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Martin' },
+      { crn: '31101', location: 'Goodwin Hall',     startTime: '15:30', endTime: '16:45',  days: 'TR',  instructor: 'Dr. Martin' },
+    ],
+  },
+  'ECE 4524': {
+    title: 'Artificial Intelligence & Engineering',
+    credits: 3,
+    sections: [
+      { crn: '31200', location: 'Goodwin Hall',     startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. Abbott' },
+      { crn: '31201', location: 'Whittemore Hall',  startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Abbott' },
+    ],
+  },
+  'PHYS 2306': {
+    title: 'Foundations of Physics II',
+    credits: 4,
+    sections: [
+      { crn: '32100', location: 'Robeson Hall',     startTime: '09:05', endTime: '09:55',  days: 'MWF', instructor: 'Dr. Pitt' },
+      { crn: '32101', location: 'Derring Hall',     startTime: '11:15', endTime: '12:30',  days: 'TR',  instructor: 'Dr. Tauber' },
+      { crn: '32102', location: 'Robeson Hall',     startTime: '14:00', endTime: '14:50',  days: 'MWF', instructor: 'Dr. Pitt' },
+    ],
+  },
+  'CHEM 1035': {
+    title: 'General Chemistry',
+    credits: 3,
+    sections: [
+      { crn: '33100', location: 'Hahn Hall',        startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Dr. Long' },
+      { crn: '33101', location: 'Hahn Hall',        startTime: '12:30', endTime: '13:45',  days: 'TR',  instructor: 'Dr. Long' },
+      { crn: '33102', location: 'Norris Hall',      startTime: '15:30', endTime: '16:20',  days: 'MWF', instructor: 'Dr. Morris' },
+    ],
+  },
+  'BIOL 1105': {
+    title: 'Principles of Biology',
+    credits: 3,
+    sections: [
+      { crn: '34100', location: 'Derring Hall',     startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Dr. Finkler' },
+      { crn: '34101', location: 'Robeson Hall',     startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. Finkler' },
+    ],
+  },
+  'PSYC 1004': {
+    title: 'Introductory Psychology',
+    credits: 3,
+    sections: [
+      { crn: '35100', location: 'War Memorial Hall', startTime: '09:05', endTime: '09:55', days: 'MWF', instructor: 'Dr. Cooper' },
+      { crn: '35101', location: 'Randolph Hall',    startTime: '11:15', endTime: '12:30',  days: 'TR',  instructor: 'Dr. Cooper' },
+      { crn: '35102', location: 'War Memorial Hall', startTime: '14:00', endTime: '14:50', days: 'MWF', instructor: 'Dr. Allen' },
+    ],
+  },
+  'SOC 1004': {
+    title: 'Introductory Sociology',
+    credits: 3,
+    sections: [
+      { crn: '35200', location: 'Randolph Hall',    startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Dr. Hughes' },
+      { crn: '35201', location: 'War Memorial Hall', startTime: '12:30', endTime: '13:45', days: 'TR',  instructor: 'Dr. Hughes' },
+    ],
+  },
+  'HIST 1015': {
+    title: 'World History to 1500',
+    credits: 3,
+    sections: [
+      { crn: '36100', location: 'Shanks Hall',      startTime: '10:10', endTime: '11:00',  days: 'MWF', instructor: 'Prof. Davis' },
+      { crn: '36101', location: 'Shanks Hall',      startTime: '15:30', endTime: '16:45',  days: 'TR',  instructor: 'Prof. Davis' },
+    ],
+  },
+  'ECON 2005': {
+    title: 'Principles of Economics',
+    credits: 3,
+    sections: [
+      { crn: '37100', location: 'Pamplin Hall',     startTime: '08:00', endTime: '08:50',  days: 'MWF', instructor: 'Dr. Tideman' },
+      { crn: '37101', location: 'Pamplin Hall',     startTime: '11:15', endTime: '12:30',  days: 'TR',  instructor: 'Dr. Tideman' },
+      { crn: '37102', location: 'Randolph Hall',    startTime: '14:00', endTime: '14:50',  days: 'MWF', instructor: 'Dr. Ashley' },
+    ],
+  },
+  'MGT 3304': {
+    title: 'Management Theory & Leadership',
+    credits: 3,
+    sections: [
+      { crn: '38100', location: 'Pamplin Hall',     startTime: '09:30', endTime: '10:45',  days: 'TR',  instructor: 'Dr. Carlson' },
+      { crn: '38101', location: 'Pamplin Hall',     startTime: '14:00', endTime: '15:15',  days: 'TR',  instructor: 'Dr. Carlson' },
+    ],
+  },
   'ISE 2014': {
     title: 'Engineering Economy',
     credits: 3,
