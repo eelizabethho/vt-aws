@@ -342,7 +342,7 @@ const calculateMetrics = (schedule) => {
 // ─────────────────────────────────────────────
 // Optimizer — brute-force all section combos
 // ─────────────────────────────────────────────
-const findBestSchedule = (courseKeys) => {
+const findBestSchedule = (courseKeys, blockedTimes = []) => {
   const courseSections = courseKeys.map(key => {
     const course = CLASS_DATABASE[key];
     if (!course) return null;
@@ -352,6 +352,16 @@ const findBestSchedule = (courseKeys) => {
     }));
   }).filter(Boolean);
   if (courseSections.length === 0) return null;
+
+  const conflictsWithBlocked = (sec) => {
+    return blockedTimes.some(block => {
+      const secDays = sec.days.split('');
+      const blockDays = block.days.split('');
+      if (!secDays.some(d => blockDays.includes(d))) return false;
+      return timeToMinutes(sec.startTime) < timeToMinutes(block.endTime) &&
+             timeToMinutes(block.startTime) < timeToMinutes(sec.endTime);
+    });
+  };
 
   let bestCombo = null, bestScore = Infinity;
   const generate = (idx, current) => {
@@ -364,7 +374,10 @@ const findBestSchedule = (courseKeys) => {
       if (score < bestScore) { bestScore = score; bestCombo = [...current]; }
       return;
     }
-    for (const section of courseSections[idx]) { current.push(section); generate(idx + 1, current); current.pop(); }
+    for (const section of courseSections[idx]) {
+      if (conflictsWithBlocked(section)) continue;
+      current.push(section); generate(idx + 1, current); current.pop();
+    }
   };
   generate(0, []);
   return bestCombo;
@@ -393,7 +406,7 @@ const CAL_END   = 21 * 60; // 9:00 PM
 const CAL_HEIGHT = 700;
 const PX_PER_MIN = CAL_HEIGHT / (CAL_END - CAL_START);
 
-const WeeklyCalendar = ({ schedule }) => {
+const WeeklyCalendar = ({ schedule, blockedTimes = [] }) => {
   const courseKeys = [...new Set(schedule.map(c => c.courseKey))];
 
   const timeLabels = [];
@@ -444,7 +457,21 @@ const WeeklyCalendar = ({ schedule }) => {
               <div key={m} className="absolute w-full border-t border-gray-100"
                 style={{ top: (m - CAL_START) * PX_PER_MIN }} />
             ))}
-            {/* Class blocks */}
+            {/* Blocked time overlays */}
+            {blockedTimes.map(block => {
+              const blockDays = block.days.split('');
+              if (!blockDays.includes(DAY_KEYS[day[0]] ? day[0] : Object.keys(DAY_KEYS).find(k => DAY_KEYS[k] === day))) return null;
+              const dKey = Object.keys(DAY_KEYS).find(k => DAY_KEYS[k] === day);
+              if (!dKey || !block.days.includes(dKey)) return null;
+              const top = (timeToMinutes(block.startTime) - CAL_START) * PX_PER_MIN;
+              const height = (timeToMinutes(block.endTime) - timeToMinutes(block.startTime)) * PX_PER_MIN;
+              return (
+                <div key={block.id} className="absolute left-0 right-0 pointer-events-none"
+                  style={{ top, height, background: 'repeating-linear-gradient(45deg, rgba(234,88,12,0.07), rgba(234,88,12,0.07) 4px, transparent 4px, transparent 10px)', borderTop: '1px dashed rgba(234,88,12,0.3)', borderBottom: '1px dashed rgba(234,88,12,0.3)' }}>
+                  {height > 20 && <p className="text-xs text-orange-400 px-1 pt-0.5 truncate">{block.label || 'Blocked'}</p>}
+                </div>
+              );
+            })}
             {blocksByDay[day].map(cls => {
               const top = (timeToMinutes(cls.startTime) - CAL_START) * PX_PER_MIN;
               const height = (timeToMinutes(cls.endTime) - timeToMinutes(cls.startTime)) * PX_PER_MIN;
@@ -496,6 +523,8 @@ export default function App() {
   const [error, setError] = useState('');
   const [optimizing, setOptimizing] = useState(false);
   const [activeTab, setActiveTab] = useState('calendar');
+  const [blockedTimes, setBlockedTimes] = useState([]);
+  const [newBlock, setNewBlock] = useState({ label: '', days: 'MWF', startTime: '12:00', endTime: '13:00' });
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const markersRef = useRef([]);
@@ -574,7 +603,7 @@ export default function App() {
     if (selectedCourses.length === 0) { setError('Select at least one course to optimize.'); return; }
     setOptimizing(true);
     setTimeout(() => {
-      const best = findBestSchedule(selectedCourses);
+      const best = findBestSchedule(selectedCourses, blockedTimes);
       if (!best) setError('No valid schedule found — all combinations have time conflicts. Try removing a course.');
       else setSchedule(best);
       setOptimizing(false);
@@ -681,6 +710,71 @@ export default function App() {
               </div>
             </div>
 
+            {/* Blocked Times */}
+            <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+              <div className="p-6 pb-4">
+                <h2 className="text-lg font-semibold flex items-center gap-2 mb-1 text-gray-900">
+                  <Clock className="w-5 h-5 text-[#E87722]" />Block Off Time
+                </h2>
+                <p className="text-sm text-gray-500">Add times you're unavailable — lunch, gym, club, etc. The optimizer will avoid scheduling classes then.</p>
+              </div>
+              <div className="px-6 pb-4 grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs text-gray-500 mb-1 block">Label (optional)</label>
+                  <input type="text" value={newBlock.label} onChange={e => setNewBlock(b => ({ ...b, label: e.target.value }))}
+                    placeholder="e.g. Lunch, Gym..."
+                    className="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#E87722]/70 focus:ring-1 focus:ring-[#E87722]/30" />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-500 mb-1 block">Days</label>
+                  <select value={newBlock.days} onChange={e => setNewBlock(b => ({ ...b, days: e.target.value }))}
+                    className="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#E87722]/70">
+                    <option value="MWF">Mon / Wed / Fri</option>
+                    <option value="TR">Tue / Thu</option>
+                    <option value="MTWRF">Every Day</option>
+                    <option value="M">Monday only</option>
+                    <option value="T">Tuesday only</option>
+                    <option value="W">Wednesday only</option>
+                    <option value="R">Thursday only</option>
+                    <option value="F">Friday only</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-xs text-gray-500 mb-1 block">Start Time</label>
+                  <input type="time" value={newBlock.startTime} onChange={e => setNewBlock(b => ({ ...b, startTime: e.target.value }))}
+                    className="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#E87722]/70" />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-500 mb-1 block">End Time</label>
+                  <input type="time" value={newBlock.endTime} onChange={e => setNewBlock(b => ({ ...b, endTime: e.target.value }))}
+                    className="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#E87722]/70" />
+                </div>
+              </div>
+              <div className="px-6 pb-4">
+                <button onClick={() => {
+                  if (newBlock.startTime >= newBlock.endTime) return;
+                  setBlockedTimes(prev => [...prev, { ...newBlock, id: Date.now() }]);
+                  setNewBlock({ label: '', days: 'MWF', startTime: '12:00', endTime: '13:00' });
+                }} className="w-full bg-[#861F41]/10 hover:bg-[#861F41]/20 text-[#861F41] font-semibold py-2.5 rounded-xl transition-all text-sm border border-[#861F41]/20">
+                  + Add Block
+                </button>
+              </div>
+              {blockedTimes.length > 0 && (
+                <div className="border-t border-gray-100 px-6 py-3 space-y-2">
+                  {blockedTimes.map(block => (
+                    <div key={block.id} className="flex items-center justify-between bg-orange-50 border border-orange-200 rounded-lg px-3 py-2">
+                      <div className="text-sm">
+                        <span className="font-medium text-orange-800">{block.label || 'Blocked'}</span>
+                        <span className="text-orange-600 ml-2 text-xs">{formatDays(block.days)} · {formatTime(block.startTime)} – {formatTime(block.endTime)}</span>
+                      </div>
+                      <button onClick={() => setBlockedTimes(prev => prev.filter(b => b.id !== block.id))}
+                        className="text-orange-400 hover:text-orange-700 ml-2"><X className="w-4 h-4" /></button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
             {/* Stats */}
             {schedule.length > 0 && (
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 animate-fade-in">
@@ -703,7 +797,7 @@ export default function App() {
                   ))}
                 </div>
 
-                {activeTab === 'calendar' && <WeeklyCalendar schedule={schedule} />}
+                {activeTab === 'calendar' && <WeeklyCalendar schedule={schedule} blockedTimes={blockedTimes} />}
 
                 {activeTab === 'schedule' && (
                   <div className="space-y-3 stagger-children">
