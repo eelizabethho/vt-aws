@@ -1,49 +1,94 @@
 # Smart Scheduler
 
-## How we used Kiro
-We used **Kiro** to help speed up development and connect different parts of our system.
+A course scheduler for Virginia Tech students that goes beyond time slots:
+it shows walking distances between class buildings on an interactive campus
+map, evaluates schedule feasibility, and lets students add personal
+commitments (clubs, workouts, meals) to test how a schedule actually fits
+into their day.
 
-- Integrated **AWS DynamoDB** for storing user schedules  
-- Helped build and structure **API routes using Express.js**  
-- Assisted with connecting our **Flask API** to retrieve VT class data  
-- Helped debug and improve overall data flow between frontend and backend  
+Built in under 8 hours at the AWS Kiro x CS Careers Hackathon 2026 at
+Virginia Tech. Team of 2–3 —
+[Devpost submission](https://devpost.com/software/smart-scheduler-5fhw7b).
 
----
+## What it does
 
-## How to run the project
+- **Class-aware map** — see walking distances between class buildings on
+  an interactive Leaflet.js campus map
+- **Schedule feasibility** — flags tight transitions and unrealistic gaps
+- **Personal commitments** — add clubs, workouts, meals to a schedule and
+  see how it all fits together
+- **Google sign-in** — save your schedule to DynamoDB
 
-### 1. Clone the repository
+## Tech stack
+
+- **Frontend:** Next.js (TypeScript, App Router), Tailwind CSS, Leaflet.js
+- **Backend:** Express.js (Node) for routing, Flask (Python) for VT class
+  data processing
+- **Storage & auth:** AWS DynamoDB, Google OAuth
+- **Built with:** AWS Kiro (agentic IDE) — an experiment in AI-assisted
+  development
+
+## How to run
+
+Prereqs: Node.js 20+, Python 3.10+, an AWS account (for DynamoDB), a
+Google OAuth client.
+
+**1. Clone**
+
 ```bash
-git clone <your-repo-link>
-cd <your-project-folder>
+git clone https://github.com/eelizabethho/vt-aws.git
+cd vt-aws
+```
 
-2. Install dependencies
-Frontend
-cd client
+**2. Install dependencies**
+
+Next.js frontend (repo root):
+
+```bash
 npm install
-Backend (Express)
+```
+
+Express server:
+
+```bash
 cd server
 npm install
-Backend (Flask)
-cd flask
+cd ..
+```
+
+Flask backend:
+
+```bash
+cd backend
 pip install -r requirements.txt
-3. Set up environment variables
+cd ..
+```
 
-Create a .env file:
+**3. Environment variables**
 
-REACT_APP_GOOGLE_CLIENT_ID=your_google_client_id
+Create a `.env.local` at the repo root:
+
+```
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_ID=your_google_client_id
 AWS_ACCESS_KEY_ID=your_key
 AWS_SECRET_ACCESS_KEY=your_secret
-4. Run the app
-Start Express backend
-cd server
-node index.js
-Start Flask API
-cd flask
-python app.py
-Start frontend
-cd client
-npm start
-5. Open in browser
-http://localhost:3000
+AWS_REGION=us-east-1
+```
+
+**4. Run**
+
+Three terminals:
+
+```bash
+# Terminal 1 — Flask (VT class data)
+cd backend && python app.py
+
+# Terminal 2 — Express (routing + DynamoDB)
+cd server && node index.js
+
+# Terminal 3 — Next.js frontend
+npm run dev
+```
+
+Open <http://localhost:3000>.
